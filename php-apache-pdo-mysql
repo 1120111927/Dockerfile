@@ -1,0 +1,7 @@
+FROM php:apache
+
+RUN apt-get update \
+    && apt-get install libmcrypt-dev -y\
+    && docker-php-ext-install mysqli pdo pdo_mysql mcrypt \
+    && echo -e 'extension=pdo_mysql.so\nextension=mysqli.so' >>/usr/local/etc/php/php.ini \
+    && rm -rf /var/lib/apt/lists/*
